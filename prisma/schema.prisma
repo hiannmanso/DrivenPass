@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model accounts {
+  id          Int           @id(map: "accounts_pk") @default(autoincrement())
+  email       String        @unique
+  password    String
+  cards       cards[]
+  credentials credentials[]
+  secureNotes secureNotes[]
+  wifi        wifi[]
+}
+
+model cards {
+  id             Int      @id(map: "cards_pk") @default(autoincrement())
+  cardNumber     String
+  cardName       String
+  cvc            String
+  expirationDate String
+  password       String
+  isVirtual      Boolean
+  cardType       String
+  label          String
+  userID         Int
+  accounts       accounts @relation(fields: [userID], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cards_fk0")
+}
+
+model credentials {
+  id       Int      @id(map: "credentials_pk") @default(autoincrement())
+  url      String
+  username String
+  password String
+  label    String
+  userID   Int
+  accounts accounts @relation(fields: [userID], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "credentials_fk0")
+}
+
+model secureNotes {
+  id         Int      @id(map: "secureNotes_pk") @default(autoincrement())
+  title      String
+  annotation String
+  label      String
+  userID     Int
+  accounts   accounts @relation(fields: [userID], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "secureNotes_fk0")
+}
+
+model wifi {
+  id          Int       @id(map: "wifi_pk") @default(autoincrement())
+  networkName String
+  password    String
+  label       String
+  userID      Int?
+  accounts    accounts? @relation(fields: [userID], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "wifi_fk0")
+}
