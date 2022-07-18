@@ -3,7 +3,7 @@ import { prisma } from "../configs/database.js"
 
 
 export type card = Omit<cards,"id">
-async function insert(cardsInformations:cards) {
+async function insert(cardsInformations:card) {
     return prisma.cards.create({data:
          {cardName:cardsInformations.cardName,
             cardNumber:cardsInformations.cardNumber,

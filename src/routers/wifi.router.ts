@@ -13,3 +13,4 @@ wifiRouter.get('/wifi/:id',showOneWifiGET)
 wifiRouter.delete('/wifi/delete/:id',wifiDELETE)
 
 export default wifiRouter
+
