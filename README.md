@@ -560,14 +560,11 @@ To run this project, you will need to add the following environment variables to
 Clone the project
 
 ```bash
-  git clone https://github.com/LucasAlvsz/projeto19-drivenpass-back
+  git clone https://github.com/hiannmanso/DrivenPass.git
 ```
 
 Go to the project directory
 
-```bash
-  cd projeto19-drivenpass-back/
-```
 
 Install dependencies
 
